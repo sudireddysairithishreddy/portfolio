@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Portfolio</title>
+    <title> Sai Rithish Reddy</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* CSS Variables */
         :root {
@@ -149,11 +151,11 @@
         .profile-image-wrapper::before {
             content: '';
             position: absolute;
-            /* Adjusted spread for more prominent glow */
-            top: -30px;
-            left: -30px;
-            right: -30px;
-            bottom: -30px;
+            /* Adjust top/left/right/bottom to control how far the glow spreads */
+            top: -25px; /* Increased spread for more prominent glow */
+            left: -25px; /* Increased spread */
+            right: -25px; /* Increased spread */
+            bottom: -25px; /* Increased spread */
             /* Conic gradient for the multi-color glow */
             background: conic-gradient(from 0deg at 50% 50%,
                         #00FFFF, /* Cyan */
@@ -163,7 +165,7 @@
                         );
             border-radius: 50%;
             z-index: -1; /* Place behind the image */
-            filter: blur(50px); /* Increased blur for more prominent glow */
+            filter: blur(40px); /* Increased blur for more prominent glow */
             animation: rotateGlow 8s linear infinite; /* Subtle rotation for dynamic glow */
         }
 
@@ -226,7 +228,7 @@
         }
 
         h2 {
-            color: var(--section-title-color); /* White for section titles */
+            color: var(--section-title-color);
             font-size: 2em;
             margin-bottom: 25px;
             border-bottom: 3px solid var(--tertiary-accent-color);
@@ -239,7 +241,25 @@
         }
         h3 {
             color: var(--accent-color); /* Cyan for skill/project titles */
+            display: flex; /* Use flexbox for icon alignment */
+            align-items: center; /* Vertically align icon and text */
+            gap: 10px; /* Space between icon and text */
         }
+        h3 .fa-icon { /* Specific styling for Font Awesome icons within h3 */
+            font-size: 1.2em; /* Increased icon size */
+        }
+
+        /* Specific icon colors */
+        .python-icon { color: #306998; } /* Python blue */
+        .java-icon { color: #f89820; } /* Java orange */
+        .html-css-icon { color: #E44D26; } /* HTML5 orange */
+        .js-icon { color: #F0DB4F; } /* JavaScript yellow */
+        .cpp-icon { color: #00599C; } /* C++ blue */
+        .creativity-icon { color: #FF69B4; } /* Hot pink for creativity */
+        .communication-icon { color: #1E90FF; } /* Dodger blue for communication */
+        .problemsolving-icon { color: #FFD700; } /* Gold for problem solving */
+        .teamwork-icon { color: #9370DB; } /* Medium purple for teamwork */
+
 
         /* Grid layouts for skills and projects */
         .skills-grid, .projects-grid {
@@ -254,14 +274,16 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             color: var(--light-text-color); /* Ensure text in cards is light */
-            display: flex; /* Make cards flex containers */
-            flex-direction: column; /* Stack content vertically */
-            justify-content: space-between; /* Push project links/game to bottom */
-            text-align: left; /* Default text alignment for project cards */
         }
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        .javaintern
+        {
+          text-align: center;
+          justify-content: center;
+          align-items: center;
         }
 
         /* Progress bars for skills */
@@ -288,22 +310,16 @@
             margin-bottom: 15px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         }
-        .project-links {
-            margin-top: auto; /* Push links to the bottom of the card */
-            display: flex;
-            gap: 12px;
-            justify-content: flex-start;
-            flex-wrap: wrap; /* Allow links to wrap */
-        }
         .project-links a {
             text-decoration: none;
             color: #fff;
             background-color: var(--tertiary-accent-color); /* Use tertiary accent color */
             padding: 8px 15px;
             border-radius: 5px;
+            margin-right: 12px;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block; /* Ensure padding works */
+            display: inline-block;
         }
         .project-links a:hover {
             background-color: #55418b; /* Darker shade on hover */
@@ -321,6 +337,15 @@
             color: var(--light-text-color); /* Ensure text is light */
         }
 
+        /* Center content within highlight box for internships */
+        #internships .highlight-box {
+            text-align: center;
+            margin: auto;
+        }
+        .highlight-box h3{
+          text-align: center;
+          margin: auto;
+        }
         /* Contact Section Specific Styling */
         #contact .section-content { /* Remove background/shadow for contact section content */
             background: none;
@@ -569,12 +594,12 @@
                 font-size: 0.9em;
                 margin-right: 8px;
             }
-            .contact-info .social-icons {
-                flex-direction: row; /* Keep row for icons if space permits, otherwise wrap */
-                justify-content: center;
-                gap: 15px;
+            .contact-box {
+                flex-direction: column; /* Stack contact icons vertically on very small screens */
+                gap: 20px;
+                padding: 15px; /* Adjust padding for smaller screens */
             }
-            .contact-info .social-icons a img {
+            .contact-box a img {
                 width: 35px;
                 height: 35px;
             }
@@ -601,8 +626,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#certifications-achievements">Certifications & Achievements</a></li>
+            <li><a href="#internships">Internships</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -610,8 +635,8 @@
     <section id="home" class="full-height-section">
         <header class="header-content">
             <div class="profile-details">
+                <p style="font-size: 2em; margin-bottom: 5px;">Hello, It's Me</p>
                 <h1>Sudireddy Sai Rithish Reddy</h1>
-                <p><strong>Hello, It's Me</strong></p>
                 <p><strong>Objective:</strong> Aspiring developer passionate about building impactful technology.</p>
             </div>
             <div class="profile-image-container">
@@ -627,42 +652,42 @@
             <h2 class="centered-title">Technical Skills</h2>
             <div class="skills-grid">
                 <div class="card">
-                    <h3>Python</h3>
+                    <h3><i class="fab fa-python fa-icon python-icon"></i> Python</h3>
                     <div class="progress"><div class="progress-bar" style="width:70%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>Java</h3>
+                    <h3><i class="fab fa-java fa-icon java-icon"></i> Java</h3>
                     <div class="progress"><div class="progress-bar" style="width: 80%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>HTML & CSS</h3>
+                    <h3><i class="fab fa-html5 fa-icon html-css-icon"></i> HTML & CSS</h3>
                     <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>JavaScript</h3>
+                    <h3><i class="fab fa-js fa-icon js-icon"></i> JavaScript</h3>
                     <div class="progress"><div class="progress-bar" style="width: 75%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>C++</h3>
+                    <h3><i class="fas fa-code fa-icon cpp-icon"></i> C++</h3>
                     <div class="progress"><div class="progress-bar" style="width: 50%;"></div></div>
                 </div>
             </div>
             <h2 class="centered-title" style="margin-top: 60px;">Professional Skills</h2>
             <div class="skills-grid">
                 <div class="card">
-                    <h3>Creativity</h3>
+                    <h3><i class="fas fa-lightbulb fa-icon creativity-icon"></i> Creativity</h3>
                     <div class="progress"><div class="progress-bar" style="width:90%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>Communication</h3>
+                    <h3><i class="fas fa-comments fa-icon communication-icon"></i> Communication</h3>
                     <div class="progress"><div class="progress-bar" style="width:65%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>Problem Solving</h3>
+                    <h3><i class="fas fa-puzzle-piece fa-icon problemsolving-icon"></i> Problem Solving</h3>
                     <div class="progress"><div class="progress-bar" style="width:75%;"></div></div>
                 </div>
                 <div class="card">
-                    <h3>Teamwork</h3>
+                    <h3><i class="fas fa-users fa-icon teamwork-icon"></i> Teamwork</h3>
                     <div class="progress"><div class="progress-bar" style="width:85%;"></div></div>
                 </div>
             </div>
@@ -674,55 +699,56 @@
             <h2 class="centered-title">Projects</h2>
             <div class="projects-grid">
                 <div class="card">
-                    <img class="project-image" src="s.jpg" alt="Static Analysis">
+                    <img class="project-image" src="Static Analysis for Android Vulnerabilities.png" alt="Static Analysis">
                     <h3>Static Analysis for Android Vulnerabilities</h3>
                     <p>A framework to detect security issues in Android apps using static code inspection techniques. Implemented in Java and XML parsing.</p>
                     <div class="project-links">
-                        <a href="#">Live</a>
                         <a href="https://github.com/sudireddysairithishreddy" target="_blank">GitHub</a>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img class="project-image" src="https://source.unsplash.com/400x250/?currency,converter" alt="Currency Converter">
+                    <img class="project-image" src="currencyconverator.png" alt="Currency Converter">
                     <h3>Currency Converter</h3>
                     <p>A responsive web application for real-time currency conversion using ExchangeRate API. Developed with JavaScript and Bootstrap.</p>
                     <div class="project-links">
-                        <a href="https://sudireddysairithishreddy.github.io/currency-convertor" target="_blank">Live</a>
                         <a href="https://github.com/sudireddysairithishreddy/currency-convertor" target="_blank">GitHub</a>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img class="project-image" src="https://placehold.co/400x250/8A2BE2/FFFFFF?text=New+Project" alt="New Project Placeholder">
-                    <h3>New Awesome Project</h3>
-                    <p>A brief description of your new project. This could be anything from a web application to a data analysis tool.</p>
+                    <img class="project-image" src="tic toc tke.png" alt="Tic Tac Toe Game Screenshot">
+                    <h3>Tic Tac Toe</h3>
+                    <p>A classic Tic Tac Toe game implemented with HTML, CSS, and JavaScript.</p>
                     <div class="project-links">
-                        <a href="#">Live Demo</a>
-                        <a href="#" target="_blank">GitHub Repo</a>
+                        <a href="https://github.com/sudireddysairithishreddy/tic-toc-tke" target="_blank">GitHub</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="certifications" class="full-height-section">
+    <section id="certifications-achievements" class="full-height-section">
         <div class="section-content">
-            <h2 class="centered-title">Certifications</h2>
+            <h2 class="centered-title">Certifications & Achievements</h2>
             <div class="highlight-box">
-                <p>✅ Python for Everybody – Coursera</p>
-                <p>✅ Full Stack Development – Udemy</p>
-                <p>✅ Java Programming – NPTEL</p>
+                <p>🏆 <a href="GRESCORE.pdf" target="_blank" style="text-decoration: none;"><button>View GRE Score</button></a></p>
             </div>
         </div>
     </section>
 
-    <section id="achievements" class="full-height-section">
+    <section id="internships" class="full-height-section">
         <div class="section-content">
-            <h2 class="centered-title">Achievements</h2>
+            <h2 class="centered-title">Internships</h2>
             <div class="highlight-box">
-                <p>🏆 <a href="GRESCORE.pdf" target="_blank" style="text-decoration: none;"><button>View GRE Score</button></a></p>
-                <p>🎖️ Finalist in National Hackathon</p>
+                <h3 class="javaintern">Java Intern - CodSoft</h3>
+                <p><strong>Duration:</strong> March 2024 – April 2024</p>
+                <p><strong>Link:</strong> <a href="https://www.linkedin.com/posts/sudireddy-sai-rithish-reddy-4160552a4_internpe-activity-7185338593563873281-Hxp9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAElVeRIBZiQtxRgQMwasuule6Y8qLkesOBY" target="_blank" style="color: var(--accent-color); text-decoration: underline;">View LinkedIn Post</a></p>
+            </div>
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h3 class="javaintern">Android Developer Intern - India Edu Program, Google for Developers</h3>
+                <p><strong>Duration:</strong> April 2024 – June 2024</p>
+                <p><strong>Link:</strong> <a href="https://www.linkedin.com/posts/sudireddy-sai-rithish-reddy-4160552a4_androiddevelopment-googleinternship-mobileappdevelopment-activity-7215449266381578242-RV0t?utm_source=share&utm_medium=member_desktop&rcm=ACoAAElVeRIBZiQtxRgQMwasuule6Y8qLkesOBY" target="_blank" style="color: var(--accent-color); text-decoration: underline;">View LinkedIn Post</a></p>
             </div>
         </div>
     </section>
@@ -732,7 +758,9 @@
         <div class="contact-flex-container">
             <div class="contact-info">
                 <h3>Let's Work Together</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum nobis possimus voluptatem iste temporibus impedit reiciendis praesentium, eaque molestiae officia voluptates exercitationem? Est recusandae dolorem culpa qui incidunt, velit itaque nulla!</p>
+                <p>I'm always open to new opportunities and collaborations. Whether you have a question, a project idea, or just want to connect, feel free to reach out. I look forward to hearing from you!</p>
+                <p><img src="https://img.icons8.com/ios-filled/24/ffffff/email.png" alt="Email Icon"/> sudireddysaireddy@gmail.com</p>
+                <p><img src="https://img.icons8.com/ios-filled/24/ffffff/phone.png" alt="Phone Icon"/> +91 9347510550</p>
                 <div class="social-icons">
                     <a href="mailto:sudireddysaireddy@gmail.com" target="_blank">
                         <img src="https://img.icons8.com/ios-filled/40/000000/email.png" title="Email"/>
@@ -750,9 +778,10 @@
                         <img src="https://img.icons8.com/ios-filled/40/000000/linkedin.png" title="LinkedIn"/>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="#"><img src="https://img.icons8.com/ios-filled/40/000000/facebook-new.png" title="Facebook"/><span>Facebook</span></a>
-                    <a href="#"><img src="https://img.icons8.com/ios-filled/40/000000/twitterx--v1.png" title="Twitter"/><span>Twitter</span></a>
-                    <a href="#"><img src="https://img.icons8.com/ios-filled/40/000000/instagram-new--v1.png" title="Instagram"/><span>Instagram</span></a>
+                    <a href="https://www.instagram.com/saireddysudieddy/?hl=en" target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/40/000000/instagram-new--v1.png" title="Instagram"/>
+                        <span>Instagram</span>
+                    </a>
                 </div>
             </div>
             <div class="contact-form">
