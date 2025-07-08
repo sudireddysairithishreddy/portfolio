@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Sai Rithish Reddy</title>
+    <title>Sai Rithish Reddy</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -51,6 +51,7 @@
             display: flex;
             align-items: center; /* Vertically center content in navbar */
             justify-content: center;
+             /* Needed for absolute positioning of mobile menu */
         }
         #navbar ul {
             list-style: none;
@@ -59,6 +60,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap; /* Allow wrapping on small screens */
+            width: 100%; /* Take full width for desktop */
         }
         #navbar li {
             margin: 0 15px;
@@ -74,6 +76,56 @@
         #navbar a:hover {
             color: var(--accent-color); /* Cyan highlight on hover */
             border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Hamburger Menu Styling */
+        .hamburger-menu {
+            display: none; /* Hidden by default on desktop */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's above other content */
+            position: absolute; /* Position relative to navbar */
+            right: 20px; /* Align to the right */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--light-text-color);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Mobile Menu Open State */
+        #nav-links.active {
+            display: flex; /* Show menu when active */
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(34, 34, 68, 0.98); /* Slightly transparent dark background */
+            position: fixed; /* Changed to fixed to keep it at the top */
+            top: var(--navbar-height); /* Position below navbar */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--navbar-height)); /* Make it full height minus navbar */
+            overflow-y: auto; /* Enable scrolling for long menus */
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: slideDown 0.4s ease-out;
+        }
+
+        #nav-links.active li {
+            margin: 10px 0; /* Adjust spacing for vertical menu */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         /* Full Height Section Styling */
@@ -279,11 +331,8 @@
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
-        .javaintern
-        {
+        .javaintern {
           text-align: center;
-          justify-content: center;
-          align-items: center;
         }
 
         /* Progress bars for skills */
@@ -340,12 +389,8 @@
         /* Center content within highlight box for internships */
         #internships .highlight-box {
             text-align: center;
-            margin: auto;
         }
-        .highlight-box h3{
-          text-align: center;
-          margin: auto;
-        }
+
         /* Contact Section Specific Styling */
         #contact .section-content { /* Remove background/shadow for contact section content */
             background: none;
@@ -413,35 +458,20 @@
             gap: 20px;
             margin-top: 20px;
             justify-content: center; /* Center for small screens */
-            flex-wrap: wrap; /* Allow icons to wrap */
         }
         @media (min-width: 768px) {
             .contact-info .social-icons {
                 justify-content: flex-start; /* Align left for large screens */
             }
         }
-        .contact-info .social-icons a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--light-text-color);
-            transition: transform 0.3s ease, color 0.3s ease;
-            font-size: 0.9em;
-        }
-        .contact-info .social-icons a:hover {
-            transform: translateY(-5px);
-            color: var(--accent-color);
-        }
         .contact-info .social-icons a img {
             width: 40px;
             height: 40px;
-            margin-bottom: 5px;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: grayscale(100%) brightness(150%); /* Start as grayscale */
         }
         .contact-info .social-icons a img:hover {
-            transform: scale(1.1);
+            transform: translateY(-5px) scale(1.1);
             filter: none; /* Revert to color on hover */
         }
 
@@ -530,15 +560,30 @@
             body {
                 padding-top: var(--navbar-height);
             }
+            #navbar {
+                justify-content: flex-end; /* Push hamburger to the right */
+            }
             #navbar ul {
+                display: none; /* Hide menu by default on mobile */
+                position: fixed; /* Changed to fixed for mobile menu */
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--navbar-height)); /* Make it full height minus navbar */
+                overflow-y: auto; /* Enable scrolling for long menus */
                 flex-direction: column;
-                gap: 5px;
+                background-color: rgba(34, 34, 68, 0.98);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             }
             #navbar li {
-                margin: 0;
+                margin: 10px 0; /* Adjust spacing for vertical menu */
             }
             #navbar a {
-                font-size: 0.9em;
+                font-size: 1.1em; /* Keep font size readable */
+                padding: 10px 0;
+            }
+            .hamburger-menu {
+                display: flex; /* Show hamburger on mobile */
             }
 
             .full-height-section {
@@ -622,7 +667,13 @@
 </head>
 <body>
     <nav id="navbar">
-        <ul>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -741,12 +792,12 @@
         <div class="section-content">
             <h2 class="centered-title">Internships</h2>
             <div class="highlight-box">
-                <h3 class="javaintern">Java Intern - CodSoft</h3>
+                <h3>Java Intern - CodSoft</h3>
                 <p><strong>Duration:</strong> March 2024 – April 2024</p>
                 <p><strong>Link:</strong> <a href="https://www.linkedin.com/posts/sudireddy-sai-rithish-reddy-4160552a4_internpe-activity-7185338593563873281-Hxp9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAElVeRIBZiQtxRgQMwasuule6Y8qLkesOBY" target="_blank" style="color: var(--accent-color); text-decoration: underline;">View LinkedIn Post</a></p>
             </div>
             <div class="highlight-box" style="margin-top: 20px;">
-                <h3 class="javaintern">Android Developer Intern - India Edu Program, Google for Developers</h3>
+                <h3>Android Developer Intern - India Edu Program, Google for Developers</h3>
                 <p><strong>Duration:</strong> April 2024 – June 2024</p>
                 <p><strong>Link:</strong> <a href="https://www.linkedin.com/posts/sudireddy-sai-rithish-reddy-4160552a4_androiddevelopment-googleinternship-mobileappdevelopment-activity-7215449266381578242-RV0t?utm_source=share&utm_medium=member_desktop&rcm=ACoAAElVeRIBZiQtxRgQMwasuule6Y8qLkesOBY" target="_blank" style="color: var(--accent-color); text-decoration: underline;">View LinkedIn Post</a></p>
             </div>
@@ -797,5 +848,27 @@
     <footer class="footer">
         <p>&copy; 2025 Sudireddy Sai Rithish Reddy. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            if (hamburgerMenu && navLinks) {
+                hamburgerMenu.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked (for smooth navigation)
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
